@@ -61,9 +61,9 @@ app.post('/api/register', async (req, res) => {
         users.push(newUser);
         saveUsers(users);
 
-        res.status(201).json({ message: 'Usuário criado com sucesso' });
+        res.status(201).json({ message: 'Usuário criado com sucesso,volte ao login' });
     } catch (error) {
-        res.status(500).json({ error: 'Erro ao criar usuário' });
+        res.status(500).json({ error: 'Erro ao criar usuário, tente novamente' });
     }
 });
 
@@ -76,7 +76,7 @@ app.post('/api/login', async (req, res) => {
         // Encontrar usuário
         const user = users.find(u => u.email === email);
         if (!user) {
-            return res.status(400).json({ error: 'Usuário não encontrado' });
+            return res.status(400).json({ error: 'Usuário não encontrado, tente novamente' });
         }
 
         // Verificar senha
